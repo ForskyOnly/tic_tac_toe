@@ -118,7 +118,7 @@ while not termine:
     
     if gagnante:
         afficher_grille(plateau)
-        print("Félicitations joueur ", joueur)
+        print("Félicitations joueur " + joueur + "  gagner")
     elif pleine:
         afficher_grille(plateau)
         print("Égalité")
