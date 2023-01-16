@@ -90,6 +90,9 @@ def est_pleine(plateau:dict) -> bool:
                 return False
     return True
 
+
+#creation des variable != variable crée dans une fonction
+
 plateau = {
     "A" : [None for _ in range(3)],
     "B" : [None for _ in range(3)],
