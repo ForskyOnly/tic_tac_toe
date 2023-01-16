@@ -57,4 +57,14 @@ def afficher_la_grille(plateau:dict) -> None:
 afficher_la_grille(plateau)
         
             
-            
+def jouer_un_coup(plateau:dict, joueur:str, coup:str)-> None:
+    """"
+    fonction qui permet de jouer un coup (ne verifie pas si le coup est valide
+    plateau(dict) : plateau du jeu 
+    joueur (str) : X ou O
+    coup (str) : Coordonnées sous forme de "A1"
+    
+    """
+    
+    plateau[coup][int(coup[1])] = joueur
+    
