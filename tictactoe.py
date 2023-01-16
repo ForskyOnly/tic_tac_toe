@@ -70,7 +70,6 @@ def jouer_un_coup(plateau:dict, joueur:str, coup:str)-> None:
     
     plateau[coup][int(coup[1])] = joueur
     
-    
 def est_coup_valide(plateau:dict,coup:str)->bool:
     """ fonction qui verifie si un coup est valide
     
