@@ -59,12 +59,32 @@ afficher_la_grille(plateau)
             
 def jouer_un_coup(plateau:dict, joueur:str, coup:str)-> None:
     """"
-    fonction qui permet de jouer un coup (ne verifie pas si le coup est valide
+    [fonction] qui permet de jouer un coup (ne verifie pas si le coup est valide)
+    
+    [Args]
     plateau(dict) : plateau du jeu 
-    joueur (str) : X ou O
+    joueur (str) : "X" ou "O"
     coup (str) : Coordonnées sous forme de "A1"
     
     """
     
     plateau[coup][int(coup[1])] = joueur
+    
+def est_coup_valide(plateau:dict,coup:str)->bool:
+    """ fonction qui verifie si un coup est valide
+    
+    
+    [Args] plateau : plateau de jeu
+            Coup : un cou de la forme "A1" 
+            returne si le coup est valide"""
+    if coup[0].upper() not in ["A","B","C"]:
+        return False
+    if coup[1] not in ["0","1","2"]:
+        return False
+    
+    #On vérifier si la case est vide 
+    if plateau[coup[0].upper()][int(coup[1])] == None:
+        
+    
+    
     
