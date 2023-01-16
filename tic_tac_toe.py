@@ -1,14 +1,13 @@
-plateau = {
-    "A" : [None for _ in range(3)],
-    "B" : [None for _ in range(3)],
-    "C" : [None for _ in range(3)]
-}
+#Version 1.0 du projet morpion
+#Version du 16/01/2023
+import os
 
 def afficher_grille(plateau:dict) -> None:
     """Fonction qui affiche la grille du morpion
     Args:
         plateau (dict): Un plateau de jeu
     """
+    os.system("clear")
     print(" \t|\t0\t|\t1\t|\t2\t|")
     print("---------------------------------------------------------")
     for cle in plateau:
@@ -27,7 +26,7 @@ def jouer_coup(plateau:dict, joueur:str, coup:str) -> None:
         joueur (str): "O" ou "X"
         coup (str): Coordonnées de la forme "A1"
     """
-    plateau[coup[0]][int(coup[1])] = joueur
+    plateau[coup[0].upper()][int(coup[1])] = joueur
     
 def est_coup_valide(plateau:dict, coup:str) -> bool:
     """Fonction qui vérifie si un coup est valide
@@ -78,44 +77,50 @@ def est_gagnante(plateau:dict) -> bool:
     return False
 
 def est_pleine(plateau:dict) -> bool:
-     """Fonction qui vérifie si la grille est pleine
+    """Fonction qui permet de savoir si la grille est pleine
     Args:
-        plateau (dict): Le plateau de jeu
+        plateau (dict): Un plateau de jeu
     Returns:
         bool: True si la grille est pleine, False sinon
     """
-     for cle in plateau:
-         for case in plateau[cle]:
-             if case == None:
-                 return False
-             
-     return True
- 
- 
- 
- 
+    
+    for cle in plateau:
+        for case in plateau[cle]:
+            if case == None:
+                return False
+    return True
+
+plateau = {
+    "A" : [None for _ in range(3)],
+    "B" : [None for _ in range(3)],
+    "C" : [None for _ in range(3)]
+}
+
 termine = False
 joueur = "X"
 
 while not termine:
     afficher_grille(plateau)
     
-    coup = input("entrez un coup : (Joueur = "+ joueur+")")
+    coup = input("Entrez un coup : (Joueur = " + joueur + " ) ")
+    # On vérifie si le coup est valide, sinon on redemande un coup
     while not est_coup_valide(plateau, coup):
-        coup = input("entrez un coup valide")
+        coup = input("Entrez un coup (Valide cette fois): ")
     
-    jouer_coup(plateau,joueur,coup)
+    jouer_coup(plateau, joueur, coup)
     
     pleine = est_pleine(plateau)
-    gagnante = est_gagnante = est_gagnante(plateau)
+    gagnante = est_gagnante(plateau)
     termine = pleine or gagnante
     
     if gagnante:
-        print("Félicitation joueur", joueur)
+        afficher_grille(plateau)
+        print("Félicitations joueur ", joueur)
     elif pleine:
-        print("egelité")
+        afficher_grille(plateau)
+        print("Égalité")
     else:
-        if  joueur == "X":
+        if joueur == "X":
             joueur = "O"
         else:
             joueur = "X"
